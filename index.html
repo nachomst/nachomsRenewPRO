@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Renew | Plataforma Pro</title>
+<style>
+:root {
+  --bg1:#0b2528; --bg2:#121212; --soft:#143c3c; --accent:#26d19a; --accent2:#1d9c92;
+  --text:#e8fffa; --muted:#9be7d7; --card:#182c2c; --danger:#f75f5f;
+  --shadow:0 0 25px rgba(0,255,180,.15); --radius:16px;
+}
+* { box-sizing:border-box; font-family:"Inter",sans-serif; }
+body { margin:0; background:linear-gradient(130deg,var(--bg1),var(--bg2)); color:var(--text); overflow-x:hidden; }
+nav { position:sticky; top:0; display:flex; justify-content:space-between; align-items:center; padding:1rem 2rem; background:#0f3133cc; backdrop-filter:blur(15px); box-shadow:var(--shadow); z-index:999; }
+nav .brand { font-size:1.7rem; font-weight:800; background:linear-gradient(90deg,#26d19a,#b0ffe4); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+nav a, nav button { margin-left:1rem; text-decoration:none; color:var(--muted); font-weight:600; cursor:pointer; background:none; border:none; font-size:1rem; transition:.2s; }
+nav a:hover, nav button:hover { color:white; transform:translateY(-2px); }
+.page { display:none; padding:3rem 2rem; animation:fade .4s ease; }
+.active{display:block;}
+@keyframes fade{ from{opacity:0;transform:translateY(15px);} to{opacity:1;transform:translateY(0);} }
+header{ text-align:center; padding:5rem 2rem; background:var(--soft); border-bottom-left-radius:40px; border-bottom-right-radius:40px; box-shadow:var(--shadow); }
+header h1{ font-size:3.2rem; margin:0; background:linear-gradient(90deg,#26d19a,#a0ffe6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-weight:800; }
+header p{ margin-top:1rem; font-size:1.3rem; max-width:800px; margin:auto; color:var(--muted); }
+.cta{ margin-top:2rem; display:inline-block; padding:.9rem 1.7rem; background:var(--accent2); color:white; font-weight:700; border-radius:var(--radius); text-decoration:none; transition:.3s; box-shadow:var(--shadow); cursor:pointer; }
+.cta:hover{ background:var(--accent); transform:translateY(-3px); }
+.grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:2rem; margin-top:3rem; }
+.card{ background:var(--card); padding:1.5rem; border-radius:var(--radius); box-shadow:var(--shadow); transition:.3s; }
+.card:hover{ transform:translateY(-5px); box-shadow:0 0 40px rgba(0,255,200,.25); }
+.card h3{margin:0;color:var(--accent);}
+.chatbox{ background:var(--card); padding:1.5rem; margin:2rem auto; max-width:650px; border-radius:var(--radius); box-shadow:var(--shadow); position:relative; }
+.chatlog{ background:#0d1a1a; border-radius:var(--radius); padding:1rem; height:290px; overflow-y:auto; white-space:pre-line; margin-bottom:1rem; }
+.inputrow{ display:flex; gap:.5rem; margin-top:0.5rem; }
+input{ flex:1; padding:.7rem; border-radius:10px; background:#143c3c; border:none; color:white; }
+button{ padding:.7rem 1.2rem; background:var(--accent2); color:white;border:none;border-radius:10px; cursor:pointer;font-weight:700; transition:.3s; }
+button:hover{background:var(--accent);}
+.quick button{ background:#145555; font-size:.82rem; }
+#loginBox{ max-width:400px;margin:4rem auto;padding:2rem; background:var(--card); border-radius:var(--radius); text-align:center; box-shadow:var(--shadow); }
+#loginBox input{ margin-bottom:1rem;width:100%; }
+.modal{ display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#00000088; backdrop-filter:blur(10px); align-items:center; justify-content:center; }
+.modal-content{ background:var(--card); padding:2rem; width:90%; max-width:600px; border-radius:var(--radius); max-height:80%; overflow:auto; box-shadow:var(--shadow); }
+.calendar{ margin-top:1rem; display:grid; grid-template-columns:repeat(7,1fr); gap:.5rem; }
+.day{ padding:.5rem;background:var(--soft); border-radius:8px;text-align:center; cursor:pointer; }
+.day:hover{ background:var(--accent2); }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="brand">Renew PRO</div>
+  <div id="navLinks">
+    <a onclick="showPage('inicio')">Inicio</a>
+    <a onclick="showPage('chatbot')">Chatbots</a>
+    <button onclick="showPage('login')">Login/Registro</button>
+  </div>
+</nav>
+
+<!-- INICIO -->
+<div id="inicio" class="page active">
+<header>
+<h1>Branding Inteligente Pro</h1>
+<p>La forma más avanzada de integrar identidad visual, comunicación y chatbots con IA.</p>
+<a class="cta" onclick="showPage('chatbot')">Probar Chatbots</a>
+</header>
+<section style="background:var(--soft);padding:3rem;border-radius:var(--radius);margin-top:3rem;">
+<h2 style="text-align:center;">¿Qué hacemos?</h2>
+<div class="grid">
+<div class="card"><h3>🎨 Identidad visual</h3><p>Diseño profesional de marcas con IA.</p></div>
+<div class="card"><h3>✍️ Identidad verbal</h3><p>Tono, voz y storytelling empresarial.</p></div>
+<div class="card"><h3>🤖 Chatbots</h3><p>Automatización de atención con IA.</p></div>
+<div class="card"><h3>📈 Estrategia</h3><p>Consultoría digital completa.</p></div>
+</div>
+</section>
+</div>
+<section style="background:var(--soft);padding:3rem;border-radius:var(--radius);margin-top:3rem;">
+  <h2 style="text-align:center;">¿Te interesa nuestro servicio?</h2>
+  <div class="grid">
+    <!-- Cuadro Chatbots -->
+    <div class="card">
+      <h3>🤖 Chatbots</h3>
+      <select id="chatbotSelect" style="width:100%; padding:.5rem; margin:1rem 0; border-radius:10px; border:none;">
+        <option value="30">Chatbot básico — 30€<br>Ofrece respuestas a preguntas básicas</option>
+        <option value="100">Chatbot medio — 100€<br>Respuestas básicas + botones</option>
+        <option value="150">Chatbot avanzado — 150€<br>Respuestas básicas + botones + personalización</option>
+      </select>
+      <button onclick="alert('Has solicitado el chatbot seleccionado');">Pedir ahora</button>
+    </div>
+    
+    <!-- Cuadro Logos -->
+    <div class="card">
+      <h3>🎨 Logos</h3>
+      <p>¡Tenemos el logo perfecto para tu empresa!</p>
+      <p><strong>20€</strong></p>
+      <button onclick="alert('Has solicitado un logo');">Pedir ahora</button>
+    </div>
+  </div>
+</section>
+
+
+<!-- LOGIN/REGISTRO -->
+<div id="login" class="page">
+<div id="loginBox">
+<h2>Login / Registro</h2>
+<input id="user" placeholder="Usuario">
+<input id="pass" type="password" placeholder="Contraseña">
+<button onclick="doLogin()">Entrar</button>
+<button onclick="doRegister()">Registrarse</button>
+<p id="loginMessage" style="color:var(--muted);font-size:.9rem;margin-top:1rem;"></p>
+</div>
+</div>
+
+<!-- PANEL PRIVADO -->
+<div id="panel" class="page">
+<h2>Panel Privado</h2>
+<p>Bienvenido, <strong id="userDisplay"></strong></p>
+<button onclick="logout()" style="background:var(--danger);margin-top:1rem;">Cerrar sesión</button>
+</div>
+
+<!-- CHATBOTS -->
+<div id="chatbot" class="page">
+<h2>👾 Aura — Peluquería y Citas</h2>
+<div class="chatbox">
+  <div id="chatlog" class="chatlog"></div>
+  <div class="inputrow">
+    <input id="userInput" placeholder="Escribe aquí...">
+    <button onclick="sendMessage('aura')">Enviar</button>
+  </div>
+  <div id="citaButtons" class="inputrow quick" style="position:sticky; bottom:0; background:var(--card); padding:5px 0; display:flex; gap:5px; justify-content:center; border-top:1px solid #1d9c92;">
+    <button onclick="openCalendar('aura')">Agendar cita</button>
+    <button onclick="showCitas('aura')">Ver mis citas</button>
+    <button onclick="verHorarios()">Ver horarios disponibles</button>
+    <button onclick="verPrecios()">Ver precios</button>
+  </div>
+</div>
+
+<h2>🍽️ Paco — Restaurante</h2>
+<div class="chatbox">
+  <div id="chatlog2" class="chatlog"></div>
+  <div class="inputrow">
+    <input id="userInput2" placeholder="Escribe aquí...">
+    <button onclick="sendMessage('paco')">Enviar</button>
+  </div>
+</div>
+</div>
+
+<!-- MODAL CALENDARIO -->
+<div id="calendarModal" class="modal">
+  <div class="modal-content">
+    <span style="float:right;cursor:pointer;" onclick="closeCalendar()">✖</span>
+    <h3>Selecciona fecha y hora</h3>
+    <div id="calendarContainer"></div>
+  </div>
+</div>
+
+<script>
+// ---------------- PÁGINAS ----------------
+function showPage(id){
+  document.querySelectorAll('.chatlog').forEach(c => c.innerHTML = '');
+  
+  if(id === 'chatbot' && !document.getElementById("userDisplay").innerText){
+    alert("Debes iniciar sesión o registrarte para acceder a los chatbots");
+    id = 'login';
+  }
+  
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+// ---------------- LOGIN/REGISTRO ----------------
+let users = {};
+function doRegister(){
+  const u = document.getElementById('user').value.trim();
+  const p = document.getElementById('pass').value.trim();
+  if(!u || !p){ document.getElementById('loginMessage').innerText = 'Rellena ambos campos'; return; }
+  if(users[u]){ document.getElementById('loginMessage').innerText = 'Usuario ya existe'; return; }
+  users[u] = p;
+  document.getElementById('loginMessage').innerText = 'Registrado con éxito! Ahora inicia sesión';
+}
+function doLogin(){
+  const u = document.getElementById('user').value.trim();
+  const p = document.getElementById('pass').value.trim();
+  if(users[u] && users[u] === p){
+    document.getElementById('userDisplay').innerText = u;
+    showPage('panel');
+  } else {
+    document.getElementById('loginMessage').innerText = 'Credenciales incorrectas';
+  }
+}
+function logout(){ showPage('inicio'); }
+
+// ---------------- CHATBOTS ----------------
+const menu = [
+  {plato:"Paella Valenciana",precio:"12€",categoria:"Plato"},
+  {plato:"Pizza Margarita",precio:"10€",categoria:"Plato"},
+  {plato:"Sopa de verduras",precio:"6€",categoria:"Plato"},
+  {plato:"Bebida refresco",precio:"2€",categoria:"Bebida"},
+  {plato:"Agua mineral",precio:"1.5€",categoria:"Bebida"},
+  {plato:"Menú del día: Pollo con arroz",precio:"8€",categoria:"Menú del día"},
+  {plato:"Menú del día: Pasta vegetariana",precio:"8€",categoria:"Menú del día"}
+];
+
+let userCitas = {};
+let citaBotonesMostrados = false;
+
+function append(sender,text,log){
+  const div = document.createElement('div');
+  div.innerHTML = `<strong>${sender}:</strong> ${text}`;
+  log.appendChild(div);
+  log.scrollTop = log.scrollHeight;
+}
+
+function sendMessage(bot){
+  let input = document.getElementById(bot==='aura'?'userInput':'userInput2');
+  let log = document.getElementById(bot==='aura'?'chatlog':'chatlog2');
+  let txt = input.value.trim();
+  if(!txt) return;
+  append("Tú",txt,log);
+  input.value="";
+  setTimeout(()=>reply(bot,txt,log),300);
+}
+
+function reply(bot,msg,log){
+  msg = msg.toLowerCase();
+  if(bot==='aura'){
+    if(msg.includes('hola')) return append('Aura','¡Hola! 😊 ¿Quieres reservar una cita de peluquería?',log);
+    if(msg.includes('cita') || msg.includes('reserv')) {
+      append('Aura','Perfecto, usa los botones para agendar, ver tus citas, ver horarios o precios 👇',log);
+      showCitaButtons();
+      return;
+    }
+    return append('Aura','No entendí, pero puedo ayudarte 😊',log);
+  }
+  if(bot==='paco'){
+    if(msg.includes('hola')) return append('Paco','¡Hola! 👋 ¿Quieres hacer una reserva o ver el menú?',log);
+    if(msg.includes('menu') || msg.includes('carta')){
+      append('Paco','Aquí tienes un resumen de nuestro menú 👇',log);
+      let categorias = {};
+      menu.forEach(item => {
+        if(!categorias[item.categoria]) categorias[item.categoria] = [];
+        categorias[item.categoria].push(`${item.plato} — ${item.precio}`);
+      });
+      for(const cat in categorias){
+        append('Paco',`📌 ${cat}`,log);
+        categorias[cat].forEach(i=>append('Paco',i,log));
+      }
+      return;
+    }
+    if(msg.includes('reserv')) return append('Paco','Reserva confirmada 🍽️',log);
+    return append('Paco','No entendí, pero puedo ayudarte 😊',log);
+  }
+}
+
+function showCitaButtons(){
+  if(citaBotonesMostrados) return;
+  citaBotonesMostrados = true;
+  document.getElementById('citaButtons').style.display = 'flex';
+}
+
+// ---------------- CALENDARIO ----------------
+function openCalendar(bot){
+  const modal = document.getElementById("calendarModal");
+  const cont = document.getElementById("calendarContainer");
+  cont.innerHTML = "";
+  modal.style.display = "flex";
+
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = now.getMonth();
+  const days = new Date(year, month+1, 0).getDate();
+
+  const wrap = document.createElement("div");
+  wrap.className = "calendar";
+  for(let d=1; d<=days; d++){
+    const day = document.createElement("div");
+    day.className = "day";
+    day.innerText = d;
+    day.onclick = () => selectDate(bot, year, month, d);
+    wrap.appendChild(day);
+  }
+  cont.appendChild(wrap);
+}
+
+function selectDate(bot, year, month, day){
+  const cont = document.getElementById("calendarContainer");
+  cont.innerHTML = `<p>Seleccionaste: ${day}/${month+1}/${year}</p>
+                    <label>Hora: <input type="time" id="horaInput"></label>
+                    <button onclick="confirmDate(${year},${month},${day})">Confirmar cita</button>`;
+}
+
+function confirmDate(year, month, day){
+  const hora = document.getElementById('horaInput').value;
+  if(!hora){ alert("Selecciona una hora"); return; }
+  const user = document.getElementById("userDisplay").innerText || "guest";
+  if(!userCitas[user]) userCitas[user] = [];
+  userCitas[user].push({fecha:`${day}/${month+1}/${year}`, hora});
+  append('Aura',`Cita agendada: ${day}/${month+1}/${year} a las ${hora}`, document.getElementById('chatlog'));
+  closeCalendar();
+}
+
+function closeCalendar(){ document.getElementById("calendarModal").style.display="none"; }
+
+// ---------------- VER Y CANCELAR CITAS ----------------
+function showCitas(bot){
+  const user = document.getElementById("userDisplay").innerText || "guest";
+  const citas = userCitas[user] || [];
+  if(citas.length === 0){
+    alert("No tienes citas agendadas");
+    return;
+  }
+  let lista = "Mis citas:\n";
+  citas.forEach((c,i)=> lista += `${i+1}. ${c.fecha} - ${c.hora}\n`);
+  const cancel = prompt(lista + "\nSi quieres cancelar alguna, ingresa el número:");
+  const n = parseInt(cancel);
+  if(n && n>0 && n<=citas.length){
+    citas.splice(n-1,1);
+    append('Aura',"Cita cancelada ✅",document.getElementById('chatlog'));
+  }
+}
+
+// ---------------- HORARIOS DISPONIBLES ----------------
+function verHorarios() {
+  const horarios = [
+    "9:00 - 10:00",
+    "10:30 - 11:30",
+    "12:00 - 13:00",
+    "14:00 - 15:00",
+    "15:30 - 16:30",
+    "17:00 - 18:00",
+    "19:00 - 20:00"
+  ];
+  alert("Horarios disponibles:\n" + horarios.join("\n"));
+}
+
+// ---------------- PRECIOS PELUQUERIA ----------------
+function verPrecios(){
+  const precios = [
+    "Corte hombre: 12€",
+    "Corte mujer: 18€",
+    "Corte niño: 10€",
+    "Barba: 8€",
+    "Peinado especial: 20€",
+    "Tinte básico: 15€",
+    "Tinte completo: 25€"
+  ];
+  alert("Precios de peluquería:\n" + precios.join("\n"));
+}
+</script>
+
+</body>
+</html>
